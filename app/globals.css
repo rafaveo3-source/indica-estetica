@@ -185,3 +185,44 @@ background:#5046E4;
 .animate-hover:hover {
   transform: translateY(-2px);
 }
+
+.shadow-card{
+box-shadow:
+0 8px 30px rgba(15,23,42,.05),
+0 2px 8px rgba(15,23,42,.04);
+}
+
+.page-width{
+max-width:1440px;
+margin-inline:auto;
+padding-inline:32px;
+}
+
+.surface{
+background:#fff;
+border:1px solid rgb(226 232 240);
+border-radius:28px;
+}
+
+.text-heading{
+color:#14123A;
+letter-spacing:-.03em;
+}
+
+.fade-in{
+animation:fade .25s ease;
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(8px);
+}
+
+to{
+opacity:1;
+transform:none;
+}
+
+}

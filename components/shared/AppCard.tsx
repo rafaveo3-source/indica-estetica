@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type AppCardProps = {
+type Props = {
   children: React.ReactNode;
   className?: string;
 };
@@ -8,15 +8,25 @@ type AppCardProps = {
 export function AppCard({
   children,
   className,
-}: AppCardProps) {
+}: Props) {
   return (
-    <div
+    <section
       className={cn(
-        "glass shadow-soft rounded-4xl border border-border bg-card p-8",
+        [
+          "rounded-[28px]",
+          "border border-slate-200/80",
+          "bg-white",
+          "p-6 md:p-8",
+          "shadow-card",
+          "transition-all",
+          "duration-300",
+          "hover:-translate-y-[1px]",
+          "hover:shadow-xl",
+        ].join(" "),
         className,
       )}
     >
       {children}
-    </div>
+    </section>
   );
 }
