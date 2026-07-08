@@ -1,17 +1,20 @@
-import { Menu } from "lucide-react";
-import { LogoMark } from "@/components/brand/LogoMark";
+"use client";
+
+import { Breadcrumb } from "./Breadcrumb";
+import { SearchInput } from "./SearchInput";
+import { UserMenu } from "./UserMenu";
 
 export function MobileHeader() {
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-white/90 px-5 backdrop-blur lg:hidden">
-      <div className="flex items-center gap-3">
-        <LogoMark size={34} />
-        <span className="font-semibold">Indica Estética</span>
-      </div>
+    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-[#F7F8FC]/90 backdrop-blur-xl">
+      <div className="flex flex-col gap-5 p-6 lg:flex-row lg:items-center lg:justify-between">
+        <Breadcrumb />
 
-      <button className="rounded-xl p-2 hover:bg-slate-100">
-        <Menu size={22} />
-      </button>
+        <div className="flex items-center gap-4">
+          <SearchInput />
+          <UserMenu />
+        </div>
+      </div>
     </header>
   );
 }
