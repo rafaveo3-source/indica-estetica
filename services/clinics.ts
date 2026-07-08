@@ -38,16 +38,41 @@ export async function getClinic(id: string): Promise<Clinic> {
 }
 
 export async function createClinic(input: ClinicCreateInput): Promise<Clinic> {
-  throw new Error("Not implemented");
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from(TABLE)
+    .insert(input)
+    .select("*")
+    .single();
+
+  if (error) throw error;
+
+  return data as Clinic;
 }
 
 export async function updateClinic(
   id: string,
   input: ClinicUpdateInput,
 ): Promise<Clinic> {
-  throw new Error("Not implemented");
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from(TABLE)
+    .update(input)
+    .eq("id", id)
+    .select("*")
+    .single();
+
+  if (error) throw error;
+
+  return data as Clinic;
 }
 
 export async function deleteClinic(id: string): Promise<void> {
-  throw new Error("Not implemented");
+  const supabase = await createClient();
+
+  const { error } = await supabase.from(TABLE).delete().eq("id", id);
+
+  if (error) throw error;
 }
