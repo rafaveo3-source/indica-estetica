@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { supabase as browserSupabase } from "@/lib/supabase/client";
 import type {
   Clinic,
   ClinicCreateInput,
@@ -7,8 +7,12 @@ import type {
 
 const TABLE = "clinics";
 
+async function getSupabaseClient() {
+  return browserSupabase;
+}
+
 export async function listClinics(): Promise<Clinic[]> {
-  const supabase = await createClient();
+  const supabase = await getSupabaseClient();
 
   const { data, error } = await supabase
     .from(TABLE)
@@ -24,7 +28,7 @@ export async function listClinics(): Promise<Clinic[]> {
 }
 
 export async function getClinic(id: string): Promise<Clinic> {
-  const supabase = await createClient();
+  const supabase = await getSupabaseClient();
 
   const { data, error } = await supabase
     .from(TABLE)
@@ -38,7 +42,7 @@ export async function getClinic(id: string): Promise<Clinic> {
 }
 
 export async function createClinic(input: ClinicCreateInput): Promise<Clinic> {
-  const supabase = await createClient();
+  const supabase = await getSupabaseClient();
 
   const { data, error } = await supabase
     .from(TABLE)
@@ -55,7 +59,7 @@ export async function updateClinic(
   id: string,
   input: ClinicUpdateInput,
 ): Promise<Clinic> {
-  const supabase = await createClient();
+  const supabase = await getSupabaseClient();
 
   const { data, error } = await supabase
     .from(TABLE)
@@ -70,7 +74,7 @@ export async function updateClinic(
 }
 
 export async function deleteClinic(id: string): Promise<void> {
-  const supabase = await createClient();
+  const supabase = await getSupabaseClient();
 
   const { error } = await supabase.from(TABLE).delete().eq("id", id);
 

@@ -1,12 +1,19 @@
+import { Pencil, Trash2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import type { Clinic } from "@/types/clinic";
 import ClinicStatusBadge from "./ClinicStatusBadge";
 
 type Props = {
   clinics: Clinic[];
+  onEdit: (clinic: Clinic) => void;
+  onDelete: (clinic: Clinic) => void;
 };
 
 export default function ClinicTable({
   clinics,
+  onEdit,
+  onDelete,
 }: Props) {
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
@@ -33,6 +40,10 @@ export default function ClinicTable({
 
               <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 WhatsApp
+              </th>
+
+              <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                Ações
               </th>
 
             </tr>
@@ -72,6 +83,29 @@ export default function ClinicTable({
 
                 <td className="px-6 py-5">
                   {clinic.phone ?? "-"}
+                </td>
+
+                <td className="px-6 py-5">
+                  <div className="flex items-center gap-2">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => onEdit(clinic)}
+                    >
+                      <Pencil className="mr-2 h-3.5 w-3.5" />
+                      Editar
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDelete(clinic)}
+                    >
+                      <Trash2 className="mr-2 h-3.5 w-3.5" />
+                      Excluir
+                    </Button>
+                  </div>
                 </td>
 
               </tr>
