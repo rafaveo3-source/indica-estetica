@@ -1,5 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
-import type { Clinic } from "@/types/clinic";
+import type {
+  Clinic,
+  ClinicCreateInput,
+  ClinicUpdateInput,
+} from "@/types/clinic";
 
 const TABLE = "clinics";
 
@@ -19,7 +23,7 @@ export async function listClinics(): Promise<Clinic[]> {
   return (data ?? []) as Clinic[];
 }
 
-export async function getClinic(id: string) {
+export async function getClinic(id: string): Promise<Clinic> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -31,4 +35,19 @@ export async function getClinic(id: string) {
   if (error) throw error;
 
   return data as Clinic;
+}
+
+export async function createClinic(input: ClinicCreateInput): Promise<Clinic> {
+  throw new Error("Not implemented");
+}
+
+export async function updateClinic(
+  id: string,
+  input: ClinicUpdateInput,
+): Promise<Clinic> {
+  throw new Error("Not implemented");
+}
+
+export async function deleteClinic(id: string): Promise<void> {
+  throw new Error("Not implemented");
 }
