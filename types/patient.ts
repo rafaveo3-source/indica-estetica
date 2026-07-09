@@ -1,34 +1,44 @@
 export type PatientStatus = "active" | "inactive" | "archived";
 
+export interface PatientWallet {
+  balance: number;
+  total_indications: number;
+  total_rewards: number;
+  last_indication_at: string | null;
+  last_redemption_at: string | null;
+}
+
 export interface Patient {
   id: string;
-  first_name: string;
-  last_name: string;
+  clinic_id: string | null;
+  name: string;
+  cpf: string | null;
   email: string | null;
   phone: string | null;
   birth_date: string | null;
   status: PatientStatus;
-  clinic_id: string | null;
+  balance: number;
+  referral_code: string | null;
+  referral_slug: string | null;
+  last_indication_at: string | null;
+  last_redemption_at: string | null;
+  total_indications: number;
+  total_rewards: number;
   created_at: string;
   updated_at: string;
 }
 
-export interface PatientCreateInput {
-  first_name: string;
-  last_name: string;
+export interface PatientForm {
+  name: string;
+  cpf?: string | null;
   email?: string | null;
   phone?: string | null;
   birth_date?: string | null;
   status?: PatientStatus;
   clinic_id?: string | null;
+  balance?: number;
 }
 
-export interface PatientUpdateInput {
-  first_name?: string;
-  last_name?: string;
-  email?: string | null;
-  phone?: string | null;
-  birth_date?: string | null;
-  status?: PatientStatus;
-  clinic_id?: string | null;
-}
+export interface PatientCreateInput extends PatientForm {}
+
+export interface PatientUpdateInput extends Partial<PatientForm> {}

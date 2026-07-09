@@ -8,8 +8,10 @@ export type {
 export type {
   Patient,
   PatientCreateInput,
+  PatientForm,
   PatientStatus,
   PatientUpdateInput,
+  PatientWallet,
 } from "./patient";
 export type {
   Referral,
